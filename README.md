@@ -1,10 +1,11 @@
-# DAppDog
+# Faucet-nestjs-react
 
-DApp developed with solidity in Ethereum blockchain and Backend with NestJS
+DApp developed with React, Faucet and NestJS
 
 ## Links
 
-You can visit Backend and Blockchain projects README.md:
+Documentación del proyecto:
 
-- [Backend](https://github.com/victorgraciaweb/DAppDog/blob/main/backend/README.md)
-- [Blockchain](https://github.com/victorgraciaweb/DAppDog/blob/main/blockchain/README.md)
+- [Blockchain](https://github.com/victorgraciaweb/faucet-nestjs-react/blob/main/blockchain/README.md)
+- [Backend](https://github.com/victorgraciaweb/faucet-nestjs-react/blob/main/backend/README.md)
+- [Frontend](https://github.com/victorgraciaweb/faucet-nestjs-react/blob/main/frontend/README.md)

@@ -1,5 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { WalletService } from './wallet.service';
+import { WalletValidationPipe } from 'src/common/pipes/wallet-validation/wallet-validation.pipe';
+import { CreateTransactionDto } from './dto/create-transaction.dto';
 
 @Controller('wallet')
 export class WalletController {
@@ -11,7 +13,10 @@ export class WalletController {
   }
 
   @Post()
-  setTransfer(@Body('toWallet') toWallet: string, @Body('value') value: number,) {
-    return this.walletService.setTransfer(toWallet, value);
+  setTransfer(
+    //@Body('toWallet', new WalletValidationPipe()) toWallet: string, @Body('value') value: number,
+    @Body() createTransactionDto: CreateTransactionDto
+  ) {
+    return this.walletService.setTransfer(createTransactionDto);
   }
 }

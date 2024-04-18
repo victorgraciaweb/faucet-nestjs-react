@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { CreateTransactionDto } from 'src/wallet/dto/create-transaction.dto';
 import Web3 from 'web3';
 
 @Injectable()
@@ -13,15 +14,15 @@ export class Web3Service {
     const balance = await this.web3.eth.getBalance(this.config.wallet);
     return this.web3.utils.fromWei(balance, 'wei');
   }
-  async transfer(toWallet: string, value: number) {
+  async transfer(createTransactionDto: CreateTransactionDto) {
     const nonce = await this.web3.eth.getTransactionCount(
       this.config.wallet,
       'latest',
     );
 
     const transaction = {
-      to: toWallet,
-      value,
+      to: createTransactionDto.toWallet,
+      value: createTransactionDto.value,
       gas: 21000,
       gasPrice: await this.web3.eth.getGasPrice(),
       nonce,

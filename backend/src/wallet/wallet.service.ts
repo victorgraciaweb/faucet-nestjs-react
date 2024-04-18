@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Web3Service } from 'src/utils/web3/web3.service';
+import { CreateTransactionDto } from './dto/create-transaction.dto';
 
 @Injectable()
 export class WalletService {
@@ -7,7 +8,7 @@ export class WalletService {
   async getBalance() {
     return this.web3Service.balance();
   }
-  async setTransfer(toWallet: string, value: number) {
-    return this.web3Service.transfer(toWallet, value);
+  async setTransfer(createTransactionDto: CreateTransactionDto) {
+    return this.web3Service.transfer(createTransactionDto);
   }
 }

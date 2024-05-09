@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { WalletService } from './wallet.service';
 import { WalletValidationPipe } from 'src/common/pipes/wallet-validation/wallet-validation.pipe';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
@@ -7,16 +7,21 @@ import { CreateTransactionDto } from './dto/create-transaction.dto';
 export class WalletController {
   constructor(private readonly walletService: WalletService) {}
 
-  @Get()
-  getBalance() {
+  @Get(':wallet/balance')
+  getBalance(@Param('wallet', new WalletValidationPipe()) toWallet: string) {
     return this.walletService.getBalance();
   }
 
-  @Post()
-  setTransfer(
-    //@Body('toWallet', new WalletValidationPipe()) toWallet: string, @Body('value') value: number,
+  @Get(':wallet/send-transaction')
+  sendTransaction(
+    @Param('wallet', new WalletValidationPipe()) toWallet: string, 
     @Body() createTransactionDto: CreateTransactionDto
   ) {
-    return this.walletService.setTransfer(createTransactionDto);
+    return this.walletService.getBalance();
   }
+
+  /*@Post()
+  setTransfer(@Body() createTransactionDto: CreateTransactionDto) {
+    return this.walletService.setTransfer(createTransactionDto);
+  }*/
 }
